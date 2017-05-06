@@ -33,5 +33,5 @@ class FactStreamer(TwythonStreamer):
     def __str__(self):
         return '<streamer.FactStreamer(tracking {} ID{})>'.format(
             len(self.users),
-            's' if self.users > 1 else '',
+            's' if len(self.users) > 1 else '',
         )
