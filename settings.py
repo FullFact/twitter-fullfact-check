@@ -8,6 +8,9 @@ API_SECRET = ''
 OAUTH_TOKEN = ''
 OAUTH_TOKEN_SECRET = ''
 
+FACTCHECK_API_URL = ''
+FACTCHECK_API_KEY = ''
+
 
 # Load environment variables from the .env file
 dotenv_path = join(dirname(__file__), '.env')
