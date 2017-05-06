@@ -18,3 +18,9 @@ class FactStreamer(TwythonStreamer):
 
     def on_error(self, status_code, data):
         self.logger.warning(data)
+
+    def __str__(self):
+        return '<streamer.FactStreamer(tracking {} ID{})>'.format(
+            len(self.users),
+            's' if self.users > 1 else '',
+        )
