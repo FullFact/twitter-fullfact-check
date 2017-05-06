@@ -41,6 +41,7 @@ def main():
         settings.OAUTH_TOKEN,
         settings.OAUTH_TOKEN_SECRET,
     )
+    log.info('Listening to tweets by {} users'.format(len(ids)))
     stream.statuses.filter(follow=','.join(str(x) for x in ids.values()))
 
 
