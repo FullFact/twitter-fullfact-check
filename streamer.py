@@ -19,13 +19,16 @@ class FactStreamer(TwythonStreamer):
     def on_success(self, data):
         if 'text' in data:
             tweet = data['text']
+            self.logger.info(tweet)
             response = requests.get(
-                settings.API_URL,
+                settings.FACTCHECK_API_URL,
                 params=dict(q=tweet, api_key=settings.FACTCHECK_API_KEY),
             )
-            conclusion = response.json()['matches'][0]['conclusion']
-            self.logger.info(tweet)
-            self.logger.info(conclusion)
+            try:
+                conclusion = response.json()['matches'][0]['conclusion']
+                self.logger.info(conclusion)
+            except:
+                self.logger.warning('Could not get conclusion')
 
     def on_error(self, status_code, data):
         self.logger.warning(data)
