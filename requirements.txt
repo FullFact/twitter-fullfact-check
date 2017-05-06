@@ -1,0 +1,2 @@
+python-dotenv==0.6.4
+twython==3.4.0
