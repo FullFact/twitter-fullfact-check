@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 API_KEY = ''
 API_SECRET = ''
+OAUTH_TOKEN = ''
+OAUTH_TOKEN_SECRET = ''
 
 
 # Load environment variables from the .env file
@@ -15,4 +17,3 @@ load_dotenv(dotenv_path)
 for var, value in os.environ.items():
     if var in globals():
         globals()[var] = value
-
