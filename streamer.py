@@ -1,6 +1,9 @@
 import logging
+import requests
 
 from twython import TwythonStreamer
+
+import settings
 
 
 class FactStreamer(TwythonStreamer):
@@ -14,7 +17,15 @@ class FactStreamer(TwythonStreamer):
         return logging.getLogger(str(self))
 
     def on_success(self, data):
-        self.logger.info(data['text'])
+        if 'text' in data:
+            tweet = data['text']
+            response = requests.get(
+                settings.API_URL,
+                params=dict(q=tweet, api_key=settings.FACTCHECK_API_KEY),
+            )
+            conclusion = response.json()['matches'][0]['conclusion']
+            self.logger.info(tweet)
+            self.logger.info(conclusion)
 
     def on_error(self, status_code, data):
         self.logger.warning(data)
